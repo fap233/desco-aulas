@@ -1,0 +1,103 @@
+<!DOCTYPE html> <!-- Declaração do tipo de documento HTML5 -->
+<html lang="pt-br" dir="ltr"> <!-- Define o idioma como português do Brasil e a direção do texto como esquerda para direita -->
+
+<head>
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres do documento como UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- Garante que o documento seja exibido corretamente em versões mais antigas do Internet Explorer -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0"> <!-- Define a escala e o layout para dispositivos móveis -->
+    <meta name="description" content="Site para reserva de viagens do descomplica. O melhor site para reserva sua viagem de forma rápida, segura e barata"> <!-- Descrição da página, usada por motores de busca -->
+    <meta name="keywords" content="comprar passagens, descomplica viagens, melhor site para comprar passagens, reserva de viagem, viajar"> <!-- Palavras-chave para motores de busca (menos relevante para SEO moderno) -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- Define a cor da barra de status em aplicativos web no iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Permite que a página seja exibida em modo de aplicativo no iOS -->
+    <meta name="mobile-web-app-capable" content="yes"> <!-- Permite que a página seja exibida em modo de aplicativo em outros dispositivos móveis -->
+    <title>Descomplica - Faça sua Reserva</title> <!-- Título da página, exibido na aba do navegador -->
+    <link rel="icon" type="image/x-icon" href="https://yt3.googleusercontent.com/5TjlI6nK7bU8ZORSy8q7ODI0pcdcvN7Vn7-lqnhO-AlscJgTL0GGyVtNdvFCvMIv5wKfeMdRyQ=s160-c-k-c0x00ffffff-no-rj"> <!-- Ícone do site, exibido na aba do navegador -->
+</head>
+
+<body>
+    <!-- Cabeçalho da página -->
+    <header style="text-align: center;">
+        <a href="https://www.descomplica.com.br"><img src="https://dp828as6rrq5m.cloudfront.net/wp-content/uploads/2024/03/12091106/logo-verde.svg" alt="Descomplica Logo"></a> <!-- Logo da empresa com link para a página inicial -->
+        <h1>Descomplica Viagens</h1> <!-- Título principal da página -->
+        <h2>Faça sua Reserva</h2> <!-- Subtítulo da página -->
+        <p>Reservas de <sup>viagem</sup> com o <b>melhor</b> <mark>preço</mark> do <sub>mercado</sub> <strong>hoje mesmo!</strong></p> <!-- Texto com formatação para destacar informações -->
+    </header>
+    <!-- Cabeçalho da página -->
+
+    <section>
+        <fieldset>
+            <!-- Solicitar informações pessoais do cliente -->
+            <legend>Informações Pessoais</legend> <!-- Legenda para o grupo de campos de entrada -->
+            <form action="" method="post" style="text-align:center;">
+                <label for="nome">Nome</label> <!-- Rótulo para o campo de entrada de nome -->
+                <input type="text" id="nome" name="nome" value="João"> <!-- Campo de entrada para o nome -->
+                <label for="sobrenome">Sobrenome</label> <!-- Rótulo para o campo de entrada de sobrenome -->
+                <input type="text" id="sobrenome" name="sobrenome" value="Silva"> <!-- Campo de entrada para o sobrenome -->
+                <label for="email">E-mail</label> <!-- Rótulo para o campo de entrada de e-mail -->
+                <input type="email" id="email" name="email" value="joaosilva@email.com"> <!-- Campo de entrada para o e-mail -->
+                <hr>
+                <!-- Solicitar informações pessoais do cliente -->
+
+                <!-- Serviços desejados pelo cliente -->
+                <legend style="font-family:courier;">Serviços Desejados</legend> <!-- Legenda para o grupo de checkboxes -->
+                <label>
+                    <input type="checkbox" name="passagens" value="passagens"> Compra de Passagens <br> <!-- Checkbox para seleção de compra de passagens -->
+                </label>
+                <label>
+                    <input type="checkbox" name="hospedagem" value="hospedagem"> Reserva de Hospedagem<br> <!-- Checkbox para seleção de reserva de hospedagem -->
+                </label>
+                <label>
+                    <input type="checkbox" name="veiculos" value="veiculos"> Aluguel de Veículos <br> <!-- Checkbox para seleção de aluguel de veículos -->
+                </label>
+                <!-- Serviços desejados pelo cliente -->
+            </form>
+        </fieldset>
+        
+        <!-- Formas de pagamento -->
+        <fieldset>
+            <legend style="text-align:center;"><small>Formas</small> de <strong>pagamento</strong></legend> <!-- Legenda para o grupo de opções de pagamento -->
+            <label>
+                <br><input type="radio" name="formadepagamento" value="cartaodecredito"><b>Cartão</b> de <sub>crédito</sub> <!-- Opção de pagamento por cartão de crédito -->
+            </label>
+            <label>
+                <br><input type="radio" name="formadepagamento" value="boleto"><i>Boleto</i> <!-- Opção de pagamento por boleto -->
+            </label>
+            <label>
+                <br><input type="radio" name="formadepagamento" value="pix"><q>P<ins>I</ins><sup>X</sup></q> <!-- Opção de pagamento por Pix -->
+            </label>
+        </fieldset>
+        <fieldset>
+            <legend style="font-size:50px;">Escolha o <em>prazo</em> <del>para</del> <mark>pagamento</mark></legend> <!-- Legenda para a seleção do prazo de pagamento -->
+            <select name="prazoPagamento"> <!-- Menu suspenso para seleção do prazo de pagamento -->
+                <option value="aVista">A vista</option> <!-- Opção para pagamento à vista -->
+                <option value="5x">5x sem juros</option> <!-- Opção para pagamento em 5 vezes sem juros -->
+                <option value="10x" selected>10x com juros</option> <!-- Opção para pagamento em 10 vezes com juros -->
+            </select>
+        </fieldset>
+        <!-- Formas de pagamento -->
+
+        
+        <input type="submit" value="Enviar"> <!-- Botão para enviar o formulário -->
+        
+    </section>
+
+    <!-- Rodapé da página -->
+    <footer>
+        <hr>
+        <address>
+            Descomplica.<br> <!-- Informações de contato -->
+            Visite-nos em:<br>
+            descomplica.com.br<br> <!-- Endereço do site -->
+            São Paulo, SP<br> <!-- Cidade e estado -->
+            BRA <!-- Abreviação do país -->
+        </address>
+        <hr>
+        Descomplica viagens v1.0 <!-- Texto do rodapé indicando a versão -->
+    </footer>
+    <!-- Rodapé da página -->
+
+
+    <!--<textarea> não foi necessário nessa página-->
+</body>
+
+</html>
