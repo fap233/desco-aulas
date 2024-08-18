@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha de Bebida</title>
+    <script>
+        // Função para solicitar a escolha da bebida e mostrar a mensagem correspondente
+        function escolherBebida() {
+            // Simulação de entrada do cliente
+            const escolha = prompt("Escolha uma bebida (café, leite, chá):").toLowerCase();
+            let valor;
+
+            // Avalia a escolha usando o switch
+            switch (escolha) {
+                case 'café':
+                    valor = 3.50;
+                    break;
+                case 'leite':
+                    valor = 2.50;
+                    break;
+                case 'chá':
+                    valor = 2.00;
+                    break;
+                default:
+                    // Caso a escolha seja inválida
+                    alert("Escolha inválida. A escolha deve ser feita entre café, leite ou chá.");
+                    return; // Encerra a função se a escolha for inválida
+            }
+
+            // Exibe a mensagem personalizada com o nome da bebida e o valor formatado
+            alert(`Você escolheu ${escolha.charAt(0).toUpperCase() + escolha.slice(1)}. O valor a ser pago é R$ ${valor.toFixed(2)}.`);
+        }
+
+        // Chama a função para solicitar a escolha da bebida quando a página é carregada
+        window.onload = escolherBebida;
+    </script>
+</head>
+<body>
+    <h1>Escolha sua bebida</h1>
+    <p>Aguarde enquanto a escolha é solicitada...</p>
+</body>
+</html>
