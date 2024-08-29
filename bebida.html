@@ -1,43 +1,185 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escolha de Bebida</title>
-    <script>
-        // Função para solicitar a escolha da bebida e mostrar a mensagem correspondente
-        function escolherBebida() {
-            // Simulação de entrada do cliente
-            const escolha = prompt("Escolha uma bebida (café, leite, chá):").toLowerCase();
-            let valor;
-
-            // Avalia a escolha usando o switch
-            switch (escolha) {
-                case 'café':
-                    valor = 3.50;
-                    break;
-                case 'leite':
-                    valor = 2.50;
-                    break;
-                case 'chá':
-                    valor = 2.00;
-                    break;
-                default:
-                    // Caso a escolha seja inválida
-                    alert("Escolha inválida. A escolha deve ser feita entre café, leite ou chá.");
-                    return; // Encerra a função se a escolha for inválida
-            }
-
-            // Exibe a mensagem personalizada com o nome da bebida e o valor formatado
-            alert(`Você escolheu ${escolha.charAt(0).toUpperCase() + escolha.slice(1)}. O valor a ser pago é R$ ${valor.toFixed(2)}.`);
+    <title>Café, Leite, ou Chá: O Que Acontece Quando Você Não Consegue Se Decidir?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbmkdpLGrkJjsQFe5AqaH62elO75tmdVKlzQ&s">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/fotos-premium/vista-superior-da-xicara-vazia-de-cafe-isolada_260652-8.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: "Roboto", sans-serif;
+            font-size: 30px;
         }
 
-        // Chama a função para solicitar a escolha da bebida quando a página é carregada
-        window.onload = escolherBebida;
-    </script>
+        .container {
+            display: flex;
+            flex-direction: column;
+            place-items: center;
+            text-align: center;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            font-size: 100%;
+            text-align: center;
+            max-width: 200px;
+            min-width: 100px;
+            height: 40px;
+            min-height: 30px;
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            max-width: 100px;
+            min-width: 50px;
+            height: 40px;
+            min-height: 30px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"]:hover {
+            background-color: red;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .modal-content p {
+            margin: 20px 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: grey;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: red;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Escolha sua bebida</h1>
-    <p>Aguarde enquanto a escolha é solicitada...</p>
+    <header>
+        <div class="container">
+            <h1>Escolha uma bebida:</h1>
+            <p>Escolha com Sabedoria: <strong>Café, Leite ou Chá</strong><br>O Destino Está em Suas Mãos!</p>
+
+            <label for="bebida">Bebida:</label><br>
+            <input type="text" id="bebida" name="bebida" placeholder="Escreva aqui" required>
+            <br>
+            <input type="submit" id="enviar" value="Enviar">
+        </div>
+    </header>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2>Alerta</h2>
+            <p id="modal-message">Mensagem de alerta.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('enviar').addEventListener('click', function (event) {
+                event.preventDefault();
+                const bebida = document.getElementById('bebida').value.trim().toLowerCase();
+                let valor;
+                let message;
+
+                if (bebida === "") {
+                    message = "Você deve escrever algo!";
+                } else {
+                    switch (bebida) {
+                        case 'café':
+                        case 'cafe':
+                            valor = 5.00;
+                            message = `Você escolheu ${bebida}. O valor a ser pago é R$ ${valor.toFixed(2)}`;
+                            break;
+                        case 'leite':
+                            valor = 4.00;
+                            message = `Você escolheu ${bebida}. O valor a ser pago é R$ ${valor.toFixed(2)}`;
+                            break;
+                        case 'chá':
+                        case 'cha':
+                            valor = 3.00;
+                            message = `Você escolheu ${bebida}. O valor a ser pago é R$ ${valor.toFixed(2)}`;
+                            break;
+                        default:
+                            message = "Escolha inválida. A bebida deve ser café, leite ou chá.";
+                            break;
+                    }
+                }
+
+                document.getElementById('modal-message').textContent = message;
+                document.getElementById('modal').style.display = 'flex';
+            });
+
+            document.getElementById('close-modal').addEventListener('click', function () {
+                document.getElementById('modal').style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === document.getElementById('modal')) {
+                    document.getElementById('modal').style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
