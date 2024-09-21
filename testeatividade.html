@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Funcionários</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Cadastro de Funcionários</h1>
+        <form id="formFuncionario">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="idade">Idade:</label>
+                <input type="number" class="form-control" id="idade" required>
+            </div>
+            <div class="form-group">
+                <label for="cargo">Cargo:</label>
+                <input type="text" class="form-control" id="cargo" required>
+            </div>
+            <div class="form-group">
+                <label for="departamento">Departamento (Gerente):</label>
+                <input type="text" class="form-control" id="departamento">
+            </div>
+            <div class="form-group">
+                <label for="linguagem">Linguagem de Programação (Desenvolvedor):</label>
+                <input type="text" class="form-control" id="linguagem">
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar Funcionário</button>
+        </form>
+        <div id="resultado" class="mt-3"></div>
+    </div>
+
+    <script>
+        // Classe Funcionario
+        class Funcionario {
+            constructor(nome, idade, cargo) {
+                this.nome = nome;
+                this.idade = idade;
+                this.cargo = cargo;
+            }
+
+            seApresentar() {
+                return `Olá, meu nome é ${this.nome}, tenho ${this.idade} anos e sou ${this.cargo}.`;
+            }
+
+            trabalhar() {
+                return `${this.nome} está trabalhando como ${this.cargo}.`;
+            }
+        }
+
+        // Classe Gerente
+        class Gerente extends Funcionario {
+            constructor(nome, idade, cargo, departamento) {
+                super(nome, idade, cargo);
+                this.departamento = departamento;
+            }
+
+            gerenciar() {
+                return `${this.nome} está gerenciando o departamento de ${this.departamento}.`;
+            }
+        }
+
+        // Classe Desenvolvedor
+        class Desenvolvedor extends Funcionario {
+            constructor(nome, idade, cargo, linguagem) {
+                super(nome, idade, cargo);
+                this.linguagem = linguagem;
+            }
+
+            programar() {
+                return `${this.nome} está programando em ${this.linguagem}.`;
+            }
+        }
+
+        // Função para exibir erros
+        function exibirErro(mensagem) {
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `<div class="alert alert-danger">${mensagem}</div>`;
+        }
+
+        // Manipulação do formulário
+        document.getElementById('formFuncionario').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const cargo = document.getElementById('cargo').value;
+            const departamento = document.getElementById('departamento').value;
+            const linguagem = document.getElementById('linguagem').value;
+
+            try {
+                if (!nome || !idade || !cargo) {
+                    throw new Error('Por favor, preencha todos os campos obrigatórios.');
+                }
+
+                let funcionario;
+
+                if (cargo.toLowerCase() === 'gerente') {
+                    if (!departamento) {
+                        throw new Error('O campo "Departamento" é obrigatório para gerentes.');
+                    }
+                    funcionario = new Gerente(nome, idade, cargo, departamento);
+                    document.getElementById('resultado').innerHTML = `
+                        ${funcionario.seApresentar()}<br>
+                        ${funcionario.gerenciar()}
+                    `;
+                } else if (cargo.toLowerCase() === 'desenvolvedor') {
+                    if (!linguagem) {
+                        throw new Error('O campo "Linguagem de Programação" é obrigatório para desenvolvedores.');
+                    }
+                    funcionario = new Desenvolvedor(nome, idade, cargo, linguagem);
+                    document.getElementById('resultado').innerHTML = `
+                        ${funcionario.seApresentar()}<br>
+                        ${funcionario.programar()}
+                    `;
+                } else {
+                    throw new Error('Cargo inválido. Por favor, escolha "Gerente" ou "Desenvolvedor".');
+                }
+
+            } catch (error) {
+                exibirErro(error.message);
+            }
+        });
+    </script>
+</body>
+</html>
